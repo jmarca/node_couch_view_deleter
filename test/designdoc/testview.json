@@ -1,0 +1,1 @@
+{"_id":"_design/test","language":"javascript","views":{"testview":{"map":"function(doc) {\n  if(doc.ts !== undefined){\n    if(doc.data === undefined){\n      emit(null, 1)\n  }}}"}}}
