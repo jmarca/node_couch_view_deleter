@@ -91,15 +91,6 @@ describe('view deletion',function(){
                                             })
                          return null
                      })
-        // request.get(couch+'/'+docs[0].id
-        //                             ,function(e,r,b){
-        //                                  if(e) return done(e)
-        //                                  var c=JSON.parse(b)
-        //                                  console.log(b)
-        //                                  return done()
-        //                              })
-        //                  return null
-        //              })
         return null
     })
 
