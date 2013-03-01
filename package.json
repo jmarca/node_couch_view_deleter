@@ -8,8 +8,9 @@
       "test": "test"
   },
   "dependencies": {
-    "request": "~2.14.0",
-    "lodash": "~1.0.1",
+      "request": "~2.14.0",
+      "optimist": "",
+      "lodash": "~1.0.1",
     "async": "~0.2.5"
   },
   "devDependencies": {
