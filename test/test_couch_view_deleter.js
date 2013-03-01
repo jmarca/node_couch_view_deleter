@@ -62,7 +62,6 @@ describe('view deletion',function(){
         // bail in development
         //console.log(couch)
         //return done()
-        console.log('deleting temporary couchdb')
         var opts = {'uri':couch
                    ,'method': "DELETE"
                    ,'headers': {}
