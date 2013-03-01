@@ -18,6 +18,10 @@ var argv = optimist
                         ,'alias': 'designdoc'
                         ,'describe':'The design doc that contains the view, above.'
                         })
+.options("l",{'alias':'limit'
+                         ,'describe': "how many docs at a time to process"
+                         ,'default': 1000
+           })
            .options("h", {'alias':'help'
                          ,'describe': "display this hopefully helpful message"
                          ,'type': "boolean"
@@ -36,7 +40,7 @@ async.nextTick(function(){
     cvd({db:argv.d
         ,design:argv.dd
         ,view:argv.v
-        ,limit:1000}
+        ,limit:argv.l}
        ,function(){
             console.log('all done')
             return null
