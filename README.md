@@ -52,12 +52,13 @@ test view defined in the test)
     "couchdb": {
         "host": "127.0.0.1",
         "port":5984,
-        "db": "the_real_database",
+        "db": "the%2freal%2fdatabase",
         "auth":{"username":"james",
                 "password":"all cats eat grass"
                 },
         "view":"_design/erlangviews2/_view/ts_id_mismatch",
-        "limit":1000
+        "limit":1000,
+        "looplimit":10
     }
 }
 ```
@@ -68,11 +69,11 @@ Again, you have to change the permissions on `config.json` to be
 
 In this case, `erlangviews2` is the design document, with Erlang views
 because they are faster than javascript views and I am not willing to
-wait days right now, and `ts_id_mismatch` is the view with about 190,000 documents that are
-unworthy because my R script was buggy and wrote them without the
-proper `_id` values.  The full view is defined rather than by parts,
-and the query automatically escapes the slashes to `%2f`, as well as
-any other character that CouchDB wants escaped.
+wait days right now, and `ts_id_mismatch` is the view with about
+190,000 documents that are unworthy because my R script was buggy and
+wrote them without the proper `_id` values.  The full view is defined
+rather than by parts.  Note that the view has real slashes, while any
+slashes in the database name need to be escaped by "%2f".
 
 The run-time case also has a field called "limit" that is set
 to 1000.  This is the default.  Watch your RAM, and push it up if you
@@ -81,6 +82,13 @@ works the query pulls down the documents from couchdb, then rewrites
 them with the delete flag set.  If you ask for a huge number of large
 docs, you can crash your program.  If in doubt, set limit smaller and
 see what happens.
+
+Finally, because it is somewhat nerve wracking to delete items from a
+database, there is a config parameter called "looplimit" that will
+limit the total number of delete loops.  In the above example I've set
+it to 10, which means I will delete at most 10,000 docs (1,000 docs,
+10 times).  For testing I set looplimit to 1 and limit to 1 to make
+sure that I'm not breaking anything.
 
 To run it, you invoke:
 
