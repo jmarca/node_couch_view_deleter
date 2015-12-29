@@ -8,11 +8,10 @@
     "test": "test"
   },
   "dependencies": {
-    "async": "",
     "config_okay": "0.0.3",
     "couchdb_get_views": "github:jmarca/couchdb_get_views",
     "lodash": "",
-    "optimist": "",
+    "minimist": "^1.2.0",
     "queue-async": "^1.0.7",
     "request": "^2.67.0"
   },
